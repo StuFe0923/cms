@@ -1,4 +1,5 @@
 # cms
 
 这个项目是一个用来学习jQuery开发内容管理系统的
-*jQuery引用
+
+> jQuery引用
