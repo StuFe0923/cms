@@ -11,6 +11,14 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            position: relative;
+        }
+        
+        body>.container {
+            padding-bottom: 2em;
+        }
+        
         .navbar {
             background-color: #6f5499;
         }
@@ -62,7 +70,12 @@
             text-decoration: none;
         }
         
-        .new-time .list-group-item ul>li {
+        .new-time {
+            padding-left: 15px;
+            padding-top: 1em;
+        }
+        
+        .new-time li {
             list-style: none;
             height: 2em;
         }
@@ -78,9 +91,8 @@
         
         .footer>.container {
             position: relative;
-            bottom: 50%;
             top: 50%;
-            margin-top: -15px;
+            margin-top: -7px;
         }
         
         .btn-default {
@@ -209,17 +221,13 @@
                     </div>
                     <!-- List group -->
                     <ul class="list-group new-time">
-                        <li class="list-group-item">
-                            <ul class="time" style="color:#263238">
-                                <li>访问总数：16742169</li>
-                                <li>文章总数：2458</li>
-                                <li>评论总数：7880</li>
-                                <li>会员总数：12772</li>
-                                <li>在线访客：187</li>
-                                <li>在线会员：2</li>
-                                <li>在线记录：268</li>
-                            </ul>
-                        </li>
+                        <li>访问总数：16742169</li>
+                        <li>文章总数：2458</li>
+                        <li>评论总数：7880</li>
+                        <li>会员总数：12772</li>
+                        <li>在线访客：187</li>
+                        <li>在线会员：2</li>
+                        <li>在线记录：268</li>
                     </ul>
                 </div>
 
