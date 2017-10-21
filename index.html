@@ -11,95 +11,132 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
+        /* body {
             position: relative;
         }
-        
+         */
+
         body>.container {
             padding-bottom: 2em;
         }
-        
+
         .navbar {
             background-color: #6f5499;
         }
-        
+
         .navbar-default .navbar-brand,
         .navbar-default .navbar-nav>li>a {
             color: #fff;
         }
-        
+
         .navbar-default .navbar-nav>li>a:focus,
         .navbar-default .navbar-nav>li>a:hover {
             color: #fff;
             background: #777777;
         }
-        
+
         .navbar-default .navbar-brand:focus,
         .navbar-default .navbar-brand:hover {
             color: #fff;
         }
-        
+
         .navbar-default .navbar-nav>.active>a,
         .navbar-default .navbar-nav>.active>a:focus,
         .navbar-default .navbar-nav>.active>a:hover {
             color: #fff;
             background: #777777;
         }
-        
+
+        /* .list-body .listli{
+            list-style: none;
+            border-bottom:1px solid #777; 
+        } */
+
+        .list-body .listli {
+            list-style: none;
+            height: 80px;
+            font-size: 18px;
+            border-bottom: 1px solid #ccc;
+            margin: 20px 0;
+
+        }
+
+        /* .list-body .listli::after {
+            content: 'gg';
+            position: absolute;
+            top: 0;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            height: 5px;
+            border: 1px solid #fff;
+        } */
+
+        .list-body .listul {
+            padding: 0px;
+        }
+        .little-list{
+            font-size:14px;
+            margin: 10px 0;
+        }
+        .little-list span{
+            padding-right:15px;
+        }
+
         .social-media .list-group-item,
         .qq-group .list-group-item {
             padding: 0;
         }
-        
+
         .social-media .list-group-item a,
         .qq-group .list-group-item a {
             color: #555;
             display: block;
             padding: 10px 15px;
         }
-        
+
         .qq-group .list-group-item:hover a {
             background: #f5f5f5;
         }
-        
+
         .social-media .list-group-item:hover a {
             background: #f5f5f5;
         }
-        
+
         .new-time:hover a {
             text-decoration: none;
         }
-        
+
         .new-time {
             padding-left: 15px;
             padding-top: 1em;
         }
-        
+
         .new-time li {
             list-style: none;
             height: 2em;
         }
-        
+
         .footer {
             background: #263238;
             left: 0;
             right: 0;
             bottom: 0;
-            position: absolute;
+            position: fixed;
             height: 111px;
         }
-        
+
         .footer>.container {
             position: relative;
             top: 50%;
             margin-top: -7px;
         }
-        
+
         .btn-default {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
-        
+
         .btn-success {
             border-top-left-radius: 10px;
             border-bottom-left-radius: 10px;
@@ -120,17 +157,35 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">动态</a></li>
-                    <li><a href="#about">集成图表</a></li>
-                    <li><a href="#contact">高德地图</a></li>
-                    <li><a href="#contact">jsplumb</a></li>
-                    <li><a href="#contact">NiceFish</a></li>
-                    <li><a href="#contact">CodeBe</a></li>
+                    <li class="active">
+                        <a href="#">动态</a>
+                    </li>
+                    <li>
+                        <a href="#about">集成图表</a>
+                    </li>
+                    <li>
+                        <a href="#contact">高德地图</a>
+                    </li>
+                    <li>
+                        <a href="#contact">jsplumb</a>
+                    </li>
+                    <li>
+                        <a href="#contact">NiceFish</a>
+                    </li>
+                    <li>
+                        <a href="#contact">CodeBe</a>
+                    </li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">登录</a></li>
-                    <li><a href="./">注册 <span class="sr-only">(current)</span></a></li>
+                    <li>
+                        <a href="#">登录</a>
+                    </li>
+                    <li>
+                        <a href="./">注册
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
@@ -143,33 +198,69 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="搜索">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">
+                        <button class="btn btn-default" type="button">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</span>
                     </button>
                     </span>
                     <div class="input-group-btn">
-                        <button type="button" class="btn btn-success">  
+                        <button type="button" class="btn btn-success">
                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>发布文章</button>
                     </div>
                 </div>
-                <div class="table">
-                    <table class="table table-striped">
-                        <tr>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                        </tr>
-                    </table>
+                <div class="list list-body">
+                    <ul class="listul">
+                        <li class="listli">
+                            <a href="###">如果你是新手，请务必先看完本项目的视频教程</a>
+                            <div class="little-list">
+                                <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
+                                <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
+                                <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
+                                <span>大漠穷秋</span>
+                                <span>2017-05-17 10:44</span>
+                            </div>
+                        </li>
+                        <li class="listli">
+                            <a href="###">视频链接在项目的README文档里面</a>
+                            <div class="little-list">
+                                <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
+                                <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
+                                <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
+                                <span>大漠穷秋</span>
+                                <span>2017-05-17 10:44</span>
+                            </div>
+                        </li>
+                        <li class="listli">
+                            <a href="###">只有看完视频教程，你才能完整理解Angular的核心特性和NiceFish这个项目的结构</a>
+                            <div class="little-list">
+                                <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
+                                <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
+                                <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
+                                <span>大漠穷秋</span>
+                                <span>2017-05-17 10:44</span>
+                            </div>
+                        </li>
+                        <li class="listli">
+                            <a href="###">请在git.oschina.net上搜索NiceFish</a>
+                            <div class="little-list">
+                                <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
+                                <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
+                                <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
+                                <span>大漠穷秋</span>
+                                <span>2017-05-17 10:44</span>
+                            </div>
+                        </li>
+                        <li class="listli">
+                            <a href="###">如果你想看到与Java服务端对接的代码，请检出nicefish这个分支</a>
+                            <div class="little-list">
+                                <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
+                                <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
+                                <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
+                                <span>大漠穷秋</span>
+                                <span>2017-05-17 10:44</span>
+                            </div>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
             <div class="col-lg-3">
@@ -242,11 +333,21 @@
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
+            <li>
+                <a href="#">1</a>
+            </li>
+            <li>
+                <a href="#">2</a>
+            </li>
+            <li>
+                <a href="#">3</a>
+            </li>
+            <li>
+                <a href="#">4</a>
+            </li>
+            <li>
+                <a href="#">5</a>
+            </li>
             <li>
                 <a href="#" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
@@ -275,7 +376,10 @@
     <div class="footer">
         <div class="container">
             <div class="row">
-                <p style="font-size:15px"><span style="color:#fff">Powered by </span><a href="http://www.baidu.com" style="color:#25457C">NiceFish</a></p>
+                <p style="font-size:15px">
+                    <span style="color:#fff">Powered by </span>
+                    <a href="http://www.baidu.com" style="color:#25457C">NiceFish</a>
+                </p>
             </div>
         </div>
     </div>
