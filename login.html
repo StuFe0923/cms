@@ -79,15 +79,19 @@
             font-size: 14px;
             display: inline-block;
             position: relative;
-            padding-left: 15px;
-            padding-right: 15px;
             margin-bottom: 5px;
+            line-height: 34px;
         }
         
         .checkbox {
             padding-top: 7px;
             /* margin-top: 0;
             margin-bottom: 0; */
+        }
+        
+        .row {
+            margin-bottom: 15px;
+            height: 34px;
         }
     </style>
 </head>
@@ -145,12 +149,10 @@
                     <form>
                         <div class="row">
                             <div class="col-sm-2">
-                                <span class="username">用户名：</span>
+                                <p class="username">用户名：</p>
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入用户名...（随意输入，假的）">
-                                </div>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入用户名...（随意输入，假的）">
                             </div>
                         </div>
                         <div class="row">
@@ -158,9 +160,7 @@
                                 <span class="password">密码：</span>
                             </div>
                             <div class="col-sm-10">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入密码...（随意输入，假的）">
-                                </div>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入密码...（随意输入，假的）">
                             </div>
                         </div>
                         <div class="checkbox">
