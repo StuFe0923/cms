@@ -46,6 +46,19 @@
             color: #fff;
             background: #777777;
         }
+        
+        .fa-weibo:before {
+            content: "\F18A";
+        }
+        
+         :after,
+         :before {
+            box-sizing: border-box;
+        }
+        
+        .fa-video-camera:before {
+            content: "\F03D";
+        }
         /* .list-body .listli{
             list-style: none;
             border-bottom:1px solid #777; 
@@ -254,10 +267,13 @@
                     <!-- List group -->
                     <ul class="list-group social-media">
                         <li class="list-group-item">
-                            <a class="weibo" href="http://www.weibo.com">官方微博</a>
+                            <a class="weibo" href="http://www.weibo.com">
+                                <i aria-hidden="true" class="fa fa-weibo">
+                                    </i> 官方微博
+                            </a>
                         </li>
                         <li class="list-group-item">
-                            <a class="weibo">优酷视频教程</a>
+                            <a class="weibo"><i _ngcontent-c2="" aria-hidden="true" class="fa fa-video-camera"></i>优酷视频教程</a>
                         </li>
                         <li class="list-group-item">
                             <a class="weibo">油管视频教程</a>
