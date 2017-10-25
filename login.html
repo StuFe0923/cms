@@ -13,6 +13,7 @@
             padding-bottom: 2em;
         }
         
+        .navbar-default .navbar-nav>.active>a,
         .navbar {
             background-color: #6f5499;
         }
@@ -61,7 +62,7 @@
         }
         /********************************************/
         
-        .col-md-10 {
+        .col-md-9 {
             position: absolute;
             right: 0;
             left: 0;
@@ -82,9 +83,12 @@
             padding-right: 15px;
             margin-bottom: 5px;
         }
-        /* .col-sm-10 {
-            margin-bottom: 7px;
-        } */
+        
+        .checkbox {
+            padding-top: 7px;
+            /* margin-top: 0;
+            margin-bottom: 0; */
+        }
     </style>
 </head>
 
@@ -98,7 +102,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#">动态</a>
+                        <a href="#" style="background:#6f5499;">动态</a>
                     </li>
                     <li>
                         <a href="#about">集成图表</a>
@@ -131,7 +135,7 @@
             <!--/.nav-collapse -->
         </div>
     </nav>
-    <div class="col-md-10">
+    <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">用户登录</h3>
@@ -159,8 +163,11 @@
                           <input type="checkbox">记住我
                         </label>
                     </div>
+
                     <button type="submit" class="btn btn-success">登录</button>
                     <button type="submit" class="btn btn-danger">忘记密码？</button>
+
+
                 </form>
             </div>
         </div>
