@@ -10,60 +10,26 @@
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <style>
-        /* body {
-            position: relative;
-        }
-         */
-        
-        body>.container {
-            padding-bottom: 2em;
-        }
-        
-        .navbar {
-            background-color: #6f5499;
-        }
-        
-        .navbar-default .navbar-brand,
-        .navbar-default .navbar-nav>li>a {
-            color: #fff;
-        }
-        
-        .navbar-default .navbar-nav>li>a:focus,
-        .navbar-default .navbar-nav>li>a:hover {
-            color: #fff;
-            background: #777777;
-        }
-        
-        .navbar-default .navbar-brand:focus,
-        .navbar-default .navbar-brand:hover {
-            color: #fff;
-        }
-        
-        .navbar-default .navbar-nav>.active>a,
-        .navbar-default .navbar-nav>.active>a:focus,
-        .navbar-default .navbar-nav>.active>a:hover {
-            color: #fff;
-            background: #777777;
-        }
-        
         .fa-weibo:before {
             content: "\F18A";
         }
-        
-         :after,
-         :before {
+
+        :after,
+        :before {
             box-sizing: border-box;
         }
-        
+
         .fa-video-camera:before {
             content: "\F03D";
         }
+
         /* .list-body .listli{
             list-style: none;
             border-bottom:1px solid #777; 
         } */
-        
+
         .list-body .listli {
             list-style: none;
             height: 80px;
@@ -71,6 +37,7 @@
             border-bottom: 1px solid #ccc;
             margin: 20px 0;
         }
+
         /* .list-body .listli::after {
             content: 'gg';
             position: absolute;
@@ -81,69 +48,54 @@
             height: 5px;
             border: 1px solid #fff;
         } */
-        
+
         .list-body .listul {
             padding: 0px;
         }
-        
+
         .little-list {
             font-size: 14px;
             margin: 10px 0;
         }
-        
+
         .little-list span {
             padding-right: 15px;
         }
-        
+
         .social-media .list-group-item,
         .qq-group .list-group-item {
             padding: 0;
         }
-        
+
         .social-media .list-group-item a,
         .qq-group .list-group-item a {
             color: #555;
             display: block;
             padding: 10px 15px;
         }
-        
+
         .qq-group .list-group-item:hover a {
             background: #f5f5f5;
         }
-        
+
         .social-media .list-group-item:hover a {
             background: #f5f5f5;
         }
-        
+
         .new-time:hover a {
             text-decoration: none;
         }
-        
+
         .new-time {
             padding-left: 15px;
             padding-top: 1em;
         }
-        
+
         .new-time li {
             list-style: none;
             height: 2em;
         }
-        
-        .footer {
-            background: #263238;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            position: fixed;
-            height: 111px;
-        }
-        
-        .footer>.container {
-            position: relative;
-            top: 50%;
-            margin-top: -7px;
-        }
-        
+
         .btn-default {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
@@ -229,32 +181,8 @@
                 </div>
 
                 <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
+                    <ul class="pagination" id="pagination">
+
                     </ul>
                 </nav>
 
@@ -269,11 +197,12 @@
                         <li class="list-group-item">
                             <a class="weibo" href="http://www.weibo.com">
                                 <i aria-hidden="true" class="fa fa-weibo">
-                                    </i> 官方微博
+                                </i> 官方微博
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a class="weibo"><i _ngcontent-c2="" aria-hidden="true" class="fa fa-video-camera"></i>优酷视频教程</a>
+                            <a class="weibo">
+                                <i _ngcontent-c2="" aria-hidden="true" class="fa fa-video-camera"></i>优酷视频教程</a>
                         </li>
                         <li class="list-group-item">
                             <a class="weibo">油管视频教程</a>
@@ -338,59 +267,119 @@
 
     <script src="js/jquery-3.2.1.js"></script>
     <script>
-        $.get('http://47.91.228.8/api/list', function(res, statusText, xhr) {
-            // console.log(res)
-            // console.log(statusText)
-            // console.log(xhr)
-            var data = res.data;
+        var urlPrefix = 'http://127.0.0.1:3000';
+        var current = 0;
+        var pages;
+        //获取数据并展示
+        var getData = function (pageNow) {
+            // 获取pageNow页的数据
+            $.get(`${urlPrefix}/articles/list?pageNow=${pageNow}`, function (res, statusText, xhr) {
+                // console.log(res)
+                // console.log(statusText)
+                // console.log(xhr)
+                var data = res.data;
 
-            /*
-            <li class="listli">
-                <a href="###">如果你是新手，请务必先看完本项目的视频教程</a>
-                <div class="little-list">
-                    <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
-                    <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
-                    <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
-                    <span>大漠穷秋</span>
-                    <span>2017-05-17 10:44</span>
-                </div>
-            </li>
-            ES5 => ECMAScript 5
-            ES6 => ECMAScript 6/ECMAScript 2015
-            模板字符串
-            */
-            var list = '';
-            for (var i = 0; i < data.length; i++) {
-                var d = data[i];
-                // var li = '<li class="listli">';
-                // li += '<a href="###">' + d.title + '</a>';
-                // li += '<div class="little-list">';
-                // li += '<span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">' + d.good + '</span>';
-                // li += '<span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">' + d.comment + '</span>';
-                // li += '<span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">' + d.view + '</span>';
-                // li += '<span>' + d.author + '</span>';
-                // li += '<span>' + d.time + '</span>';
-                // li += '</div>';
-                // li += '</li>';
+                /*
+                <li class="listli">
+                    <a href="###">如果你是新手，请务必先看完本项目的视频教程</a>
+                    <div class="little-list">
+                        <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
+                        <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
+                        <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
+                        <span>大漠穷秋</span>
+                        <span>2017-05-17 10:44</span>
+                    </div>
+                </li>
+                ES5 => ECMAScript 5
+                ES6 => ECMAScript 6/ECMAScript 2015
+                模板字符串
+                */
+                //渲染数据
+                var list = '';
+                for (var i = 0; i < data.length; i++) {
+                    var d = data[i];
+                    // var li = '<li class="listli">';
+                    // li += '<a href="###">' + d.title + '</a>';
+                    // li += '<div class="little-list">';
+                    // li += '<span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">' + d.good + '</span>';
+                    // li += '<span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">' + d.comment + '</span>';
+                    // li += '<span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">' + d.view + '</span>';
+                    // li += '<span>' + d.author + '</span>';
+                    // li += '<span>' + d.time + '</span>';
+                    // li += '</div>';
+                    // li += '</li>';
 
-                var li = `<li class="listli">
-                        <a href="###">${d.title}</a>
-                        <div class="little-list">
-                            <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">${d.good}</span>
-                            <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">${d.comment}</span>
-                            <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">${d.view}</span>
-                            <span>${d.author}</span>
-                            <span>${d.time}</span>
-                        </div>
-                    </li>`;
+                    var li = `<li class="listli">
+                            <a href="###">${d.title}</a>
+                            <div class="little-list">
+                                <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">${d.up}</span>
+                                <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">${d.comment}</span>
+                                <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">${d.view}</span>
+                                <span>${d.author}</span>
+                                <span>${d.publish_time}</span>
+                            </div>
+                        </li>`;
 
 
-                list += li;
+                    list += li;
+                }
+
+                $('#list-content').html(list);
+
+                // 展示分页
+                pages = res.pages;
+                var pagination = `<li>
+                                <a data-pageno="prev" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>`;
+                for (var index = 0; index < pages.pageNumber; index++) {
+                    var num = index + 1;
+                    pagination += `<li><a data-pageno="${index}">${num}</a></li>`;
+                }
+                pagination += `<li>
+                                <a data-pageno="next" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>`;
+                $('#pagination').html(pagination);
+                //保存当前页的值
+                current = pages.pageNow;
+            });
+        }
+
+
+        //事件绑定，不生效的原因是，在绑定事件的时候，li元素还不存在
+        // $('#pagination li').on('click', function (e) {
+        //     console.log(e)
+        // });
+        // 事件委托   事件冒泡
+        $('#pagination').on('click', 'a', function (e) {
+            console.log(this)
+            var pageNow = $(this).attr('data-pageno')
+
+            if (pageNow === 'next') {
+                //计算出下一页的页码
+                var next = current + 1;
+                //判断下一页页码是不是越界了，如果越界了，就不加1了
+                if (next >= pages.pageNumber) {
+                    next = current;
+                }
+                getData(next)
+            } else if (pageNow === 'prev') {
+                var prev = current - 1;
+                if (prev < 0) {
+                    prev = 0;
+                }
+                getData(prev)
+            } else {
+                getData(pageNow)
             }
 
-            $('#list-content').html(list);
 
         })
+
+        getData(current);
     </script>
 
 </body>
