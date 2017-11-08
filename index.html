@@ -271,7 +271,7 @@
         //获取数据并展示
         var getData = function(pageNow) {
             // 获取pageNow页的数据
-            $.get(`${urlPrefix}/articles/list?pageNow=${pageNow}`, function(res, statusText, xhr) {
+            $.get(`${urlPrefix}/articles/list?pageCount=10&pageNow=${pageNow}`, function(res, statusText, xhr) {
                 // console.log(res)
                 // console.log(statusText)
                 // console.log(xhr)
