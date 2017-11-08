@@ -266,6 +266,17 @@
     <script src="js/jquery-3.2.1.js"></script>
     <script>
         var urlPrefix = 'http://47.91.228.8/api';
+
+        var openArtile = function(id){
+            console.log(id);
+            var link = `http://47.91.228.8/api/articles/content?pageID=${id}`;
+            // 1. 在当前页面打开
+            // window.location.href = link;
+            window.location = link;
+            // 2. 在新页面打开
+            // window.open(link);
+        }
+
         var current = 0;
         var pages;
         //获取数据并展示
@@ -308,7 +319,7 @@
                     // li += '</li>';
 
                     var li = `<li class="listli">
-                            <a href="###">${d.title}</a>
+                            <a id="${d._id}" onclick="openArtile('${d._id}')" target="_blank">${d.title}</a>
                             <div class="little-list">
                                 <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">${d.up}</span>
                                 <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">${d.comment}</span>
