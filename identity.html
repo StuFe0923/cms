@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        input {
+            border: 0;
+            display: inline-block;
+        }
+        /* label {
+            float: left;
+        } */
+        
+        label {
+            font-size: 14px;
+            color: #666;
+            font-weight: normal;
+        }
+        
+        a {
+            display: block;
+        }
+        
+        button {
+            border: none;
+            background-color: #CCCCCC;
+            color: #fff;
+            display: block;
+            border-radius: 20px;
+            line-height: 45px;
+        }
+        /* .name input {
+            color: #fff;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="name">
+        <form>
+            <label>ID号</label>
+            <input type="text" name="ID" placeholder="请输入投资者ID号" style="color:#fff">
+        </form>
+
+    </div>
+    <div class="password">
+        <form>
+            <label>密码</label>
+            <input type="password" name="password" placeholder="请输入密码">
+        </form>
+    </div>
+    <div class="verification">
+        <form>
+            <label>验证码</label>
+            <input type="number" name="number" placeholder="请输入图形验证码">
+            <span>验证码</span>
+        </form>
+    </div>
+    <div>
+        <a href="#">《电子签名数字证书用户使用须知》</a>
+        <a href="#">《广发期货有限公司广发通客户授权协议》</a>
+    </div>
+    <div>
+        <form method="post" action="save.php">
+            <button type="button" disabled="disabled">统一协议并授权</button>
+        </form>
+    </div>
+</body>
+
+</html>
