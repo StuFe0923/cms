@@ -6,8 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
     <style>
+        body {
+            margin-top: 0;
+        }
+        
         input {
             border: 0;
             display: inline-block;
@@ -22,11 +26,19 @@
             font-weight: normal;
         }
         
+        p {
+            white-space: nowrap;
+            display: inline;
+            line-height: 45px;
+            margin: 0;
+        }
+        
         a {
             color: #348EF1;
             display: block;
             text-decoration: none;
             height: 25px;
+            font-size: 14px;
         }
         
         a:hover {
@@ -49,7 +61,7 @@
             margin-top: 30px;
         }
         
-        .container {
+        .body-div {
             left: 10px;
             right: 10px;
         }
@@ -57,23 +69,23 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="body-div">
         <div class="name">
 
-            <label>ID号</label>
+            <p><label>ID号</label></p>
             <input type="text" name="ID" placeholder="请输入投资者ID号">
 
         </div>
         <div class="password">
 
-            <label>密码</label>
+            <p><label>密码</label></p>
             <input type="password" name="password" placeholder="请输入密码">
 
         </div>
         <div class="verification">
 
-            <label>验证码</label>
-            <input type="number" name="number" placeholder="请输入图形验证码">
+            <p><label>验证码</label></p>
+            <input type="text" name="number" placeholder="请输入图形验证码">
             <span>验证码</span>
 
         </div>
