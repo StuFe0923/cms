@@ -21,8 +21,12 @@
             display: inline-block;
             right: 0px;
             height: 45px;
-            /* width: 80%; */
+            width: 100%;
             padding: 0;
+        }
+        
+        input::-webkit-input-placeholder {
+            color: #ccc;
         }
         
         label {
@@ -56,7 +60,7 @@
             font-size: 14px;
             float: right;
             margin-right: -10px;
-            width: 42px;
+            width: 100px;
             height: 45px;
             line-height: 45px;
         }
@@ -76,42 +80,98 @@
             margin-top: 30px;
         }
         
-        .body-div {
+        .container {
             margin-left: 10px;
             margin-right: 10px;
+        }
+        
+        .left,
+        .wra-left {
+            width: 60px;
+            height: 45px;
+            float: left;
+        }
+        
+        .right {
+            margin-left: 60px;
+            overflow: hidden;
+        }
+        
+        .wrapper {
+            display: flex;
+        }
+        
+        .wra-mid {
+            width: 100%;
+            margin: 0;
+        }
+        
+        .wra-right {
+            width: 100px;
+            height: 45px;
+        }
+        
+        .con-name,
+        .password,
+        .wrapper {
+            border: none;
+            position: relative;
+        }
+        
+        .con-name:after,
+        .password:after,
+        .wrapper:after {
+            /* border-bottom: 1px solid #ccc; */
+            content: '';
+            position: absolute;
+            bottom: 0;
+            background: #ccc;
+            width: 100%;
+            height: 1px;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
         }
     </style>
 </head>
 
 <body>
-    <div class="body-div">
-        <div class="name">
+    <div class="container">
+        <div class="con-name">
+            <div class="left">
 
-            <p><label>ID号</label></p>
-            <input type="text" name="ID" placeholder="请输入投资者ID号">
-
+                <p><label>ID号</label></p>
+            </div>
+            <div class="right">
+                <input type="text" name="ID" placeholder="请输入投资者ID号">
+            </div>
         </div>
         <div class="password">
-
-            <p><label>密码</label></p>
-            <input type="password" name="password" placeholder="请输入密码">
-
+            <div class="left">
+                <p><label>密码</label></p>
+            </div>
+            <div class="right">
+                <input type="password" name="password" placeholder="请输入密码">
+            </div>
         </div>
-        <div class="verification">
-
-            <p><label>验证码</label></p>
-            <input type="text" name="number" placeholder="请输入图形验证码">
-            <img src="https://store.gf.com.cn/super/api/captcha/image?r=0.8148802529482833">
-
+        <div class="wrapper">
+            <div class="wra-left">
+                <p><label>验证码</label></p>
+            </div>
+            <div class="wra-mid">
+                <input type="text" name="number" placeholder="请输入图形验证码">
+            </div>
+            <div class="wra-right">
+                <img src="https://store.gf.com.cn/super/api/captcha/image?r=0.8148802529482833">
+            </div>
         </div>
         <div class="ruller">
             <a href="#">《电子签名数字证书用户使用须知》</a>
             <a href="#">《广发期货有限公司广发通客户授权协议》</a>
         </div>
         <div>
-            <form method="post" action="#">
-                <button type="button" disabled="disabled">统一协议并授权</button>
-            </form>
+            <button type="button" disabled="disabled">统一协议并授权</button>
         </div>
     </div>
 </body>
