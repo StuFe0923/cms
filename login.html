@@ -12,8 +12,9 @@
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
+
         /********************************************/
-        
+
         .login-form .col-sm-2 {
             color: black;
             font-weight: bold;
@@ -22,21 +23,21 @@
             height: 34px;
             text-align: right;
         }
-        
+
         @media (max-width:768px) {
             .login-form .col-sm-2 {
                 text-align: left;
             }
         }
-        
+
         .login-form .checkbox {
             padding-top: 7px;
         }
-        
+
         .row {
             margin-bottom: 15px;
         }
-        
+
         p {
             margin: 0;
         }
@@ -74,10 +75,10 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a href="F:/workspace/cms/login.html">登录</a>
+                        <a href="./login.html">登录</a>
                     </li>
                     <li>
-                        <a href="./">注册
+                        <a href="./register.html">注册
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -99,7 +100,7 @@
                             <p class="username">用户名：</p>
                         </div>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入用户名...（随意输入，假的）">
+                            <input type="text" class="form-control" id="name" name="username" placeholder="请输入用户名...（随意输入，假的）">
                         </div>
                     </div>
                     <div class="row">
@@ -107,7 +108,7 @@
                             <p class="password">密码：</p>
                         </div>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入密码...（随意输入，假的）">
+                            <input type="password" class="form-control" id="pwd" name="password" placeholder="请输入密码...（随意输入，假的）">
                         </div>
                     </div>
                     <div class="row">
@@ -121,8 +122,8 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-2">
-                            <button type="submit" class="btn btn-success">登录</button>
-                            <button type="submit" class="btn btn-danger">忘记密码？</button>
+                            <button type="button" id="loginBtn" class="btn btn-success">登录</button>
+                            <button type="button" class="btn btn-danger">忘记密码？</button>
                         </div>
                     </div>
 
@@ -140,5 +141,29 @@
             </div>
         </div>
 </body>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    $('#loginBtn').click(function () {
+        // var urlPrefix = 'http://47.91.228.8/api';
+        var urlPrefix = 'http://127.0.0.1:3000/';
+        var username = $('#name').val();
+        var password = $('#pwd').val();
+        if(!username || !password){
+            alert('你必须输入用户名和密码');
+            return;
+        }
+
+        $.post(`${urlPrefix}/login`, {
+            username: username,
+            password: password
+        }, function (data) {
+            console.log(data);
+            window.location.href = 'xxxxxx';
+        });
+
+    });
+
+
+</script>
 
 </html>
