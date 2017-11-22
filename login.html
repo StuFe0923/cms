@@ -12,9 +12,8 @@
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
-
         /********************************************/
-
+        
         .login-form .col-sm-2 {
             color: black;
             font-weight: bold;
@@ -23,21 +22,21 @@
             height: 34px;
             text-align: right;
         }
-
+        
         @media (max-width:768px) {
             .login-form .col-sm-2 {
                 text-align: left;
             }
         }
-
+        
         .login-form .checkbox {
             padding-top: 7px;
         }
-
+        
         .row {
             margin-bottom: 15px;
         }
-
+        
         p {
             margin: 0;
         }
@@ -143,12 +142,12 @@
 </body>
 <script src="js/jquery-3.2.1.js"></script>
 <script>
-    $('#loginBtn').click(function () {
+    $('#loginBtn').click(function() {
         // var urlPrefix = 'http://47.91.228.8/api';
-        var urlPrefix = 'http://127.0.0.1:3000/';
+        var urlPrefix = 'http://127.0.0.1:3000';
         var username = $('#name').val();
         var password = $('#pwd').val();
-        if(!username || !password){
+        if (!username || !password) {
             alert('你必须输入用户名和密码');
             return;
         }
@@ -156,14 +155,12 @@
         $.post(`${urlPrefix}/login`, {
             username: username,
             password: password
-        }, function (data) {
+        }, function(data) {
             console.log(data);
             window.location.href = 'xxxxxx';
         });
 
     });
-
-
 </script>
 
 </html>

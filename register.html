@@ -8,15 +8,12 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <style>
-
-
         .btn-default {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
-
         /********************************************/
-
+        
         .regist-form .col-sm-3 {
             color: black;
             font-weight: bold;
@@ -24,12 +21,14 @@
             line-height: 34px;
             text-align: right;
         }
-        .btn-success{
+        
+        .btn-success {
             cursor: not-allowed;
             box-shadow: none;
             opacity: .65;
         }
-        .col-sm-offset-2{
+        
+        .col-sm-offset-2 {
             line-height: 35px;
             padding: 7px 0;
             color: #A94442;
@@ -93,61 +92,61 @@
                             <p class="username">用户名：</p>
                         </div>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="用户名4到32个字符">
+                            <input type="text" class="form-control" id="Name" placeholder="用户名4到32个字符">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="password">昵称：</p>
+                            <p class="nickname">昵称：</p>
                         </div>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="昵称2到32个字符">
+                            <input type="text" class="form-control" id="Nickname" placeholder="昵称2到32个字符">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="password">常用邮箱：</p>
+                            <p class="email">常用邮箱：</p>
                         </div>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="常用邮箱，验证后才能登陆">
+                            <input type="email" class="form-control" id="Email" placeholder="常用邮箱，验证后才能登陆">
                         </div>
                     </div>
                     <div class="row">
-                            <div class="col-sm-9 col-sm-offset-2">
-                        【如果您未在收件箱收到验证邮件，请到垃圾箱查收。】
-                            </div>
+                        <div class="col-sm-9 col-sm-offset-2">
+                            【如果您未在收件箱收到验证邮件，请到垃圾箱查收。】
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="password">密码：</p>
                         </div>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="密码，至少8位">
+                            <input type="password" class="form-control" id="pwd" placeholder="密码，至少8位">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="password">重复密码：</p>
+                            <p class="passwordAgain">重复密码：</p>
                         </div>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="重复密码，两次输入必须一致">
+                            <input type="password" class="form-control" id="pwds" placeholder="重复密码，两次输入必须一致">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-3">
-                            <p class="password">验证码：</p>
+                            <p class="verify">验证码：</p>
                         </div>
                         <div class="col-sm-5">
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="验证码">
+                            <input type="text" class="form-control" id="verification" placeholder="验证码">
                         </div>
                         <div class="col-sm-4">
-                            <span class="password">验证码</span>
+                            <span class="verify">验证码</span>
                             <button type="button" class="btn btn-primary">重新获取</button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4 col-sm-offset-3">
-                            <button type="submit" class="btn btn-success">注册</button>
+                            <button type="button" class="btn btn-success" id="registerBtn">注册</button>
                         </div>
                     </div>
 
@@ -164,6 +163,35 @@
                 </div>
             </div>
         </div>
+
 </body>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+    $('#registerBtn').click(function() {
+        var urlPrefix = 'http://127.0.0.1:3000';
+        var username = $('#Name').val();
+        var nickname = $('#Nickname').val();
+        var email = $('Email').val();
+        var password = $('#pwd').val();
+        var passwordAgain = $('#pwds').val();
+        var verify = $('verification').val();
+        if (!username || !nickname || !email || !password || !passwordAgain || !verify) {
+            alert('你必须填写完整所有内容！')
+            return
+        }
+        //填完了所有的内容依然会被弹窗拦截
+        $.post(`${urlPrefix}/register`, {
+                username: username,
+                nickname: nickname,
+                email: email,
+                password: password,
+                passwordAgain: passwordAgain,
+                verify: verify
+            }),
+            function(data) {
+                window.location.href = '#';
+            }
+    })
+</script>
 
 </html>
