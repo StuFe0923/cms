@@ -179,6 +179,10 @@
             alert('你必须填写完整所有内容！')
             return
         }
+        if (passwordAgain !== password) {
+            alert('密码不一致，请重新填写')
+            return
+        }
         //填完了所有的内容依然会被弹窗拦截
         $.post(`${urlPrefix}/register`, {
                 username: username,
