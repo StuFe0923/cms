@@ -168,7 +168,7 @@
 <script src="js/jquery-3.2.1.js"></script>
 <script>
     $('#registerBtn').click(function() {
-        var urlPrefix = 'http://127.0.0.1:3000';
+        var urlPrefix = 'http://47.91.228.8/api';
         var username = $('#Name').val();
         var nickname = $('#Nickname').val();
         var email = $('#Email').val();
@@ -184,7 +184,7 @@
             return
         }
         //填完了所有的内容依然会被弹窗拦截
-        $.post(`${urlPrefix}/register`, {
+        $.post(`${urlPrefix}/users/add`, {
                 username: username,
                 nickname: nickname,
                 email: email,
