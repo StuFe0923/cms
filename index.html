@@ -156,7 +156,7 @@
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="搜索">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
+                                <button class="btn btn-default" type="button" id="keyWords">
                                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>搜索</span>
                             </button>
                             </span>
@@ -267,7 +267,7 @@
     <script>
         var urlPrefix = 'http://47.91.228.8/api';
 
-        var openArtile = function(id){
+        var openArtile = function(id) {
             console.log(id);
             var link = `http://47.91.228.8/api/articles/content?pageID=${id}`;
             // 1. 在当前页面打开
@@ -279,6 +279,7 @@
 
         var current = 0;
         var pages;
+        var keyWord;
         //获取数据并展示
         var getData = function(pageNow) {
             // 获取pageNow页的数据
@@ -287,23 +288,32 @@
                 // console.log(statusText)
                 // console.log(xhr)
                 var data = res.data;
+                $('#keyWords').keyup(function() {
+                        $.get(`${urlPrefix}/articles/list?pageCount=10&pageNow=${pageNow}&title=${keyWord}`, function(res, statusText, xhr) {
+                            if (keyWord === "") {
+                                return false
+                            } else {
+                                $('#list-content').html(list);
+                            }
+                        })
 
-                /*
-                <li class="listli">
-                    <a href="###">如果你是新手，请务必先看完本项目的视频教程</a>
-                    <div class="little-list">
-                        <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
-                        <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
-                        <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
-                        <span>大漠穷秋</span>
-                        <span>2017-05-17 10:44</span>
-                    </div>
-                </li>
-                ES5 => ECMAScript 5
-                ES6 => ECMAScript 6/ECMAScript 2015
-                模板字符串
-                */
-                //渲染数据
+                    })
+                    /*
+                    <li class="listli">
+                        <a href="###">如果你是新手，请务必先看完本项目的视频教程</a>
+                        <div class="little-list">
+                            <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
+                            <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
+                            <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
+                            <span>大漠穷秋</span>
+                            <span>2017-05-17 10:44</span>
+                        </div>
+                    </li>
+                    ES5 => ECMAScript 5
+                    ES6 => ECMAScript 6/ECMAScript 2015
+                    模板字符串
+                    */
+                    //渲染数据
                 var list = '';
                 for (var i = 0; i < data.length; i++) {
                     var d = data[i];
