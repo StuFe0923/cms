@@ -21,12 +21,11 @@
             line-height: 34px;
             text-align: right;
         }
-        
-        .btn-success {
+        /* .btn-success {
             cursor: not-allowed;
             box-shadow: none;
             opacity: .65;
-        }
+        } */
         
         .col-sm-offset-2 {
             line-height: 35px;
@@ -146,7 +145,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4 col-sm-offset-3">
-                            <button type="button" class="btn btn-success" id="registerBtn">注册</button>
+                            <button type="button" class="btn btn-success disabled" id="registerBtn">注册</button>
                         </div>
                     </div>
 
@@ -167,24 +166,54 @@
 </body>
 <script src="js/jquery-3.2.1.js"></script>
 <script>
-    $('#registerBtn').click(function() {
-        var urlPrefix = 'http://47.91.228.8/api';
-        var username = $('#Name').val();
-        var nickname = $('#Nickname').val();
-        var email = $('#Email').val();
-        var password = $('#pwd').val();
-        var passwordAgain = $('#pwds').val();
-        var verify = $('#verification').val();
+    var username;
+    var nickname;
+    var email;
+    var password;
+    var passwordAgain;
+    var verify;
+    var allInput = function() {
+        username = $('#Name').val();
+        nickname = $('#Nickname').val();
+        email = $('#Email').val();
+        password = $('#pwd').val();
+        passwordAgain = $('#pwds').val();
+        verify = $('#verification').val();
+    }
+
+    var checkInput = function() {
+        allInput();
         if (!username || !nickname || !email || !password || !passwordAgain || !verify) {
-            alert('你必须填写完整所有内容！')
-            return
+            return false
+        } else {
+            return true
+        }
+    }
+    $('form.regist-form input').keyup(function() {
+        if (!checkInput()) {
+            $('#registerBtn').addClass('disabled')
+        } else {
+            $('#registerBtn').removeClass('disabled')
+        }
+    })
+    var checkInputLegal = function() {
+        allInput();
+        if (username.length < 4 || username.length > 32) {
+            alert('输入的用户名不合法')
+            return false
         }
         if (passwordAgain !== password) {
             alert('密码不一致，请重新填写')
-            return
+            return false
         }
-        //填完了所有的内容依然会被弹窗拦截
-        $.post(`${urlPrefix}/users/add`, {
+        return true
+    }
+    $('#registerBtn').click(function() {
+        var urlPrefix = 'http://47.91.228.8/api';
+        if (!(checkInputLegal())) {
+            return false
+        }
+        $.post(`${urlPrefix}/users/regist`, {
                 username: username,
                 nickname: nickname,
                 email: email,
@@ -194,6 +223,10 @@
             function(data) {
                 window.location.href = '#';
             }
+
+        $('#Name').ajaxError(function() { //ajax请求失败时出发ajaxError
+            alert("msg") //但怎么把msg内容展示出来？
+        })
     })
 </script>
 
