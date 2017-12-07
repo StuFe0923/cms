@@ -213,6 +213,29 @@
         if (!(checkInputLegal())) {
             return false
         }
+
+        /*
+            前面的输入校验代码都很好，基本上没什么问题，很好！
+
+            注意看你这一块的代码，为什么不符合你的预期？
+            把光标点到post的左括号后（或者该行最后的左大括号后），你会发现，与之配对的右括号是247行的反括号，
+            也就是说，$.post方法调用的结束位置，在247行。后面一个逗号，再加一个函数定义，其实这个函数定义已经是另外一句代码了。
+
+            js语法很灵活，在js里面，用逗号可以分隔两个表达式（可以是赋值语句，可以是变量定义，可以是函数定义，甚至可以是计算，其实表达的效果和分号没有区别）。不会有任何语法错误。
+            例如： var a=1,b=2,c=a+b,d=function(){}; 
+            完全等价于 var a=1;var b=2;var c=a+b;var d=function(){};
+            
+            因此，你如下的代码，完全等价于：
+            $.post(url, {
+
+            });
+            function(data){
+                window.location.href = '#';
+            }
+
+            由此可见，实际上你并没有给$.post传递第三个success回调函数，你写的function变成了一个匿名函数而已!!!!!
+            搞清楚原因后，你应该明白为什么我要求写代码的时候括号成对写，然后找准地方添加参数的原因！
+        */
         $.post(`${urlPrefix}/users/regist`, {
                 username: username,
                 nickname: nickname,
@@ -224,6 +247,15 @@
                 window.location.href = '#';
             }
 
+        /*
+            全局ajaxError这个东西用的很少，了解下，知道有这个东西即可！！！
+            ajaxError是用来定义一个全局的ajax错误回调，注意是全局！意味着在整个页面上，只要有任何一次ajax调用失败了，就会触发一次这个回调函数，多次调用失败就会触发多次。与$.post，$.get,$.ajax方法中定义的error回调的区别就是，这三者只是针对这次ajax调用失败的回调，不对其他地方的ajax调用有任何影响。
+            如下文档的示例，
+            http://www.css88.com/jqapi-1.9/ajaxError/
+            是在演示先定义一个全局的ajaxError，然后在页面的一个dom节点上用load函数加载一个页面ajax/missing.html，当然这个页面是不存在的，因此加载会失败，失败了就会发生ajax调用错误，进而触发ajaxError定义的全局ajax错误回调。
+
+            结合目前的需求，实际上你并不需要定义一个全局的ajaxError，因为你只是希望在上面那个ajax请求发生错误的时候做一下处理而已，并不想对所有的ajax调用错误都做处理，对吧！
+        */
         $('#Name').ajaxError(function() { //ajax请求失败时出发ajaxError
             alert("msg") //但怎么把msg内容展示出来？
         })
