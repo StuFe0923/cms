@@ -242,24 +242,24 @@
                 email: email,
                 password: password,
                 verify: verify
-            }),
+            },
             function(data) {
                 window.location.href = '#';
-            }
-
-        /*
-            全局ajaxError这个东西用的很少，了解下，知道有这个东西即可！！！
-            ajaxError是用来定义一个全局的ajax错误回调，注意是全局！意味着在整个页面上，只要有任何一次ajax调用失败了，就会触发一次这个回调函数，多次调用失败就会触发多次。与$.post，$.get,$.ajax方法中定义的error回调的区别就是，这三者只是针对这次ajax调用失败的回调，不对其他地方的ajax调用有任何影响。
-            如下文档的示例，
-            http://www.css88.com/jqapi-1.9/ajaxError/
-            是在演示先定义一个全局的ajaxError，然后在页面的一个dom节点上用load函数加载一个页面ajax/missing.html，当然这个页面是不存在的，因此加载会失败，失败了就会发生ajax调用错误，进而触发ajaxError定义的全局ajax错误回调。
-
-            结合目前的需求，实际上你并不需要定义一个全局的ajaxError，因为你只是希望在上面那个ajax请求发生错误的时候做一下处理而已，并不想对所有的ajax调用错误都做处理，对吧！
-        */
-        $('#Name').ajaxError(function() { //ajax请求失败时出发ajaxError
-            alert("msg") //但怎么把msg内容展示出来？
-        })
+                $('#Name').error(function() { //ajax请求失败时出发ajaxError
+                    alert("msg") //但怎么把msg内容展示出来？
+                })
+            })
     })
+
+    /*
+        全局ajaxError这个东西用的很少，了解下，知道有这个东西即可！！！
+        ajaxError是用来定义一个全局的ajax错误回调，注意是全局！意味着在整个页面上，只要有任何一次ajax调用失败了，就会触发一次这个回调函数，多次调用失败就会触发多次。与$.post，$.get,$.ajax方法中定义的error回调的区别就是，这三者只是针对这次ajax调用失败的回调，不对其他地方的ajax调用有任何影响。
+        如下文档的示例，
+        http://www.css88.com/jqapi-1.9/ajaxError/
+        是在演示先定义一个全局的ajaxError，然后在页面的一个dom节点上用load函数加载一个页面ajax/missing.html，当然这个页面是不存在的，因此加载会失败，失败了就会发生ajax调用错误，进而触发ajaxError定义的全局ajax错误回调。
+
+        结合目前的需求，实际上你并不需要定义一个全局的ajaxError，因为你只是希望在上面那个ajax请求发生错误的时候做一下处理而已，并不想对所有的ajax调用错误都做处理，对吧！
+    */
 </script>
 
 </html>
