@@ -12,8 +12,9 @@
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
+
         /********************************************/
-        
+
         .regist-form .col-sm-3 {
             color: black;
             font-weight: bold;
@@ -21,12 +22,13 @@
             line-height: 34px;
             text-align: right;
         }
+
         /* .btn-success {
             cursor: not-allowed;
             box-shadow: none;
             opacity: .65;
         } */
-        
+
         .col-sm-offset-2 {
             line-height: 35px;
             padding: 7px 0;
@@ -166,13 +168,14 @@
 </body>
 <script src="js/jquery-3.2.1.js"></script>
 <script>
+
     var username;
     var nickname;
     var email;
     var password;
     var passwordAgain;
     var verify;
-    var allInput = function() {
+    var allInput = function () {
         username = $('#Name').val();
         nickname = $('#Nickname').val();
         email = $('#Email').val();
@@ -181,7 +184,7 @@
         verify = $('#verification').val();
     }
 
-    var checkInput = function() {
+    var checkInput = function () {
         allInput();
         if (!username || !nickname || !email || !password || !passwordAgain || !verify) {
             return false
@@ -189,14 +192,14 @@
             return true
         }
     }
-    $('form.regist-form input').keyup(function() {
+    $('form.regist-form input').keyup(function () {
         if (!checkInput()) {
             $('#registerBtn').addClass('disabled')
         } else {
             $('#registerBtn').removeClass('disabled')
         }
     })
-    var checkInputLegal = function() {
+    var checkInputLegal = function () {
         allInput();
         if (username.length < 4 || username.length > 32) {
             alert('输入的用户名不合法')
@@ -208,7 +211,7 @@
         }
         return true
     }
-    $('#registerBtn').click(function() {
+    $('#registerBtn').click(function () {
         var urlPrefix = 'http://47.91.228.8/api';
         if (!(checkInputLegal())) {
             return false
@@ -236,19 +239,28 @@
             由此可见，实际上你并没有给$.post传递第三个success回调函数，你写的function变成了一个匿名函数而已!!!!!
             搞清楚原因后，你应该明白为什么我要求写代码的时候括号成对写，然后找准地方添加参数的原因！
         */
-        $.post(`${urlPrefix}/users/regist`, {
+
+        $.ajax({
+            url: `${urlPrefix}/users/regist`,
+            data: {
                 username: username,
                 nickname: nickname,
                 email: email,
                 password: password,
                 verify: verify
             },
-            function(data) {
+            method: "POST",
+            success: function (data) {
                 window.location.href = '#';
-                $('#Name').error(function() { //ajax请求失败时出发ajaxError
-                    alert("msg") //但怎么把msg内容展示出来？
-                })
-            })
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert(jqXHR.responseJSON.msg)
+                console.log(jqXHR)
+                // console.log()
+                // console.log()
+            }
+        })
+
     })
 
     /*
