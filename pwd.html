@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function groupSplit(arr, size) {
+      var r = []; //result
+
+      function _(t, a, n) { //tempArr, arr, num
+        if (n === 0) {
+          r[r.length] = t;
+          return;
+        }
+        for (var i = 0, l = a.length - n; i <= l; i++) {
+          var b = t.slice();
+          b.push(a[i]);
+          _(b, a.slice(i + 1), n - 1);
+        }
+      }
+      _([], arr, size);
+      return r;
+    }
+    var nameArr = ['gf', 'wang', 'yang', '2'];
+    var names = [];
+    for (var i = 0; i < nameArr.length; i++) {
+      names = names.concat(groupSplit(nameArr, i + 1));
+    }
+    names = names.map(n => n.join(""));
+    console.log(names)
+
+    var pwdArr = 'WYANG.wyang'.split('');
+    var pwdArr2 = [];
+    var pwd = [];
+    for (i = 0; i < 10; i++) {
+      pwdArr2.push(2010 + i);
+    }
+    console.log(pwdArr2);
+    pwd = pwd.concat(groupSplit(pwdArr, 6));
+    pwd = pwd.map(p => {
+      p.sort((a, b) => {
+        return Math.random() > 0.5 ? 1 : -1;
+      }).join('');
+    });
+    console.log(pwd)
+
+  </script>
+</body>
+
+</html>
