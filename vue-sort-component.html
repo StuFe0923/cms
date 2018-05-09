@@ -93,76 +93,80 @@
                 </tbody>
             </table>
         </div> -->
-        <isDiv></isDiv>
+        <temperature></temperature>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
-    Vue.component('isDiv', {
+    Vue.component('temperature', {
         template: `
         <div>
             <table>
-                <isThead></isThead>
-                <isTbody></isTbody>
+                <table-head></table-head>
+                <table-body></table-body>
             </table>
         </div>
         `,
         components: {
-            'isThead': {
+            'table-head': {
                 template: `
                 <thead>
                     <tr>
                         <th>城市</th>
-                        <th @click="sort('high')" :class="{highlight:sortValue=='high'}">最高气温(度)</th>
-                        <th @click="sort('low')" :class="{highlight:sortValue=='low'}">最低气温(度)</th>
-                        <th @click="sort('avg')" :class="{highlight:sortValue=='avg'}">平均气温(度)</th>
+                        <th @click="sort('high')" :class="{highlight:this.sortValue=='high'}">最高气温(度)</th>
+                        <th @click="sort('low')" :class="{highlight:this.sortValue=='low'}">最低气温(度)</th>
+                        <th @click="sort('avg')" :class="{highlight:this.sortValue=='avg'}">平均气温(度)</th>
                     </tr>
                 </thead>`,
             },
-            'isTbody': {
+            'table-body': {
                 template: `
                 <tbody>
-                    <tr v-for="item in temp">
+                    <tr v-for="item in this.temp">
                         <td>{{item.city}}</td>
-                        <td :class="{highlight:sortValue=='high'}">{{item.high}}</td>
-                        <td :class="{highlight:sortValue=='low'}">{{item.low}}</td>
-                        <td :class="{highlight:sortValue=='avg'}">{{item.avg}}</td>
+                        <td :class="{highlight:this.sortValue=='high'}">{{item.high}}</td>
+                        <td :class="{highlight:this.sortValue=='low'}">{{item.low}}</td>
+                        <td :class="{highlight:this.sortValue=='avg'}">{{item.avg}}</td>
                     </tr>
                 </tbody>`,
+                props: ['']
             }
-        }
+        },
+        data() {
+            return {
+                temp: [{
+                    city: '北京',
+                    high: 13,
+                    low: 5,
+                    avg: 10,
+                }, {
+                    city: '上海',
+                    high: 18,
+                    low: 8,
+                    avg: 12,
+                }, {
+                    city: '深圳',
+                    high: 22,
+                    low: 10,
+                    avg: 17,
+                }, {
+                    city: '广州',
+                    high: 25,
+                    low: 17,
+                    avg: 19,
+                }, {
+                    city: '杭州',
+                    high: 17,
+                    low: 14,
+                    avg: 15,
+                }],
+
+            }
+        },
     })
     var app = new Vue({
         el: '#app',
-        data: {
-            temp: [{
-                city: '北京',
-                high: 13,
-                low: 5,
-                avg: 10,
-            }, {
-                city: '上海',
-                high: 18,
-                low: 8,
-                avg: 12,
-            }, {
-                city: '深圳',
-                high: 22,
-                low: 10,
-                avg: 17,
-            }, {
-                city: '广州',
-                high: 25,
-                low: 17,
-                avg: 19,
-            }, {
-                city: '杭州',
-                high: 17,
-                low: 14,
-                avg: 15,
-            }],
-            sortValue: '',
-        },
+        sortValue: '',
         methods: {
             sort: function(key) {
                 this.sortValue = key;
