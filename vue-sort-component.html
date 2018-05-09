@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件注册</title>
+    <style>
+        #app {
+            padding: 50px;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        td,
+        th {
+            padding: 5px 10px 5px 0;
+            text-align: left;
+            border: 1px solid #333;
+        }
+        
+        td.highlight,
+        th.highlight {
+            background-color: darkcyan;
+        }
+        
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <p>已知一组数据，表示几个城市某一天的最高气温、最低气温和平均气温，表格展示这组数据，并可根据最高、最低、平均气温排序，并高亮排序的列。</p>
+        <p>数据结构如下：</p>
+        <p>
+            <pre>
+[
+    {
+        city: '北京',
+        high: 13,
+        low: 5,
+        avg: 10,
+    },
+    {
+        city: '上海',
+        high: 18,
+        low: 8,
+        avg: 12,
+    },
+    {
+        city: '深圳',
+        high: 22,
+        low: 16,
+        avg: 18,
+    },
+    {
+        city: '广州',
+        high: 25,
+        low: 17,
+        avg: 19,
+    },
+    {
+        city: '杭州',
+        high: 17,
+        low: 14,
+        avg: 15,
+    }
+]
+            </pre>
+        </p>
+        <!-- <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>城市</th>
+                        <th @click="sort('high')" :class="{highlight:sortValue=='high'}">最高气温(度)</th>
+                        <th @click="sort('low')" :class="{highlight:sortValue=='low'}">最低气温(度)</th>
+                        <th @click="sort('avg')" :class="{highlight:sortValue=='avg'}">平均气温(度)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in temp">
+                        <td>{{item.city}}</td>
+                        <td :class="{highlight:sortValue=='high'}">{{item.high}}</td>
+                        <td :class="{highlight:sortValue=='low'}">{{item.low}}</td>
+                        <td :class="{highlight:sortValue=='avg'}">{{item.avg}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+        <isDiv></isDiv>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    Vue.component('isDiv', {
+        template: `
+        <div>
+            <table>
+                <isThead></isThead>
+                <isTbody></isTbody>
+            </table>
+        </div>
+        `,
+        components: {
+            'isThead': {
+                template: `
+                <thead>
+                    <tr>
+                        <th>城市</th>
+                        <th @click="sort('high')" :class="{highlight:sortValue=='high'}">最高气温(度)</th>
+                        <th @click="sort('low')" :class="{highlight:sortValue=='low'}">最低气温(度)</th>
+                        <th @click="sort('avg')" :class="{highlight:sortValue=='avg'}">平均气温(度)</th>
+                    </tr>
+                </thead>`,
+            },
+            'isTbody': {
+                template: `
+                <tbody>
+                    <tr v-for="item in temp">
+                        <td>{{item.city}}</td>
+                        <td :class="{highlight:sortValue=='high'}">{{item.high}}</td>
+                        <td :class="{highlight:sortValue=='low'}">{{item.low}}</td>
+                        <td :class="{highlight:sortValue=='avg'}">{{item.avg}}</td>
+                    </tr>
+                </tbody>`,
+            }
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            temp: [{
+                city: '北京',
+                high: 13,
+                low: 5,
+                avg: 10,
+            }, {
+                city: '上海',
+                high: 18,
+                low: 8,
+                avg: 12,
+            }, {
+                city: '深圳',
+                high: 22,
+                low: 10,
+                avg: 17,
+            }, {
+                city: '广州',
+                high: 25,
+                low: 17,
+                avg: 19,
+            }, {
+                city: '杭州',
+                high: 17,
+                low: 14,
+                avg: 15,
+            }],
+            sortValue: '',
+        },
+        methods: {
+            sort: function(key) {
+                this.sortValue = key;
+                this.temp.sort((a, b) => {
+                    return a[key] < b[key] ? 1 : -1;
+                });
+            }
+        },
+        computed: {
+
+        }
+    });
+</script>
+
+</html>
