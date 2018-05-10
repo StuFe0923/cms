@@ -102,8 +102,8 @@
         template: `
         <div>
             <table>
-                <table-head></table-head>
-                <table-body></table-body>
+                <table-head :sort-value="sortValue" @highlight-click="sort"></table-head>
+                <table-body :sort-value="sortValue" :temp="temp"></table-body>
             </table>
         </div>
         `,
@@ -113,23 +113,38 @@
                 <thead>
                     <tr>
                         <th>城市</th>
-                        <th @click="sort('high')" :class="{highlight:this.sortValue=='high'}">最高气温(度)</th>
-                        <th @click="sort('low')" :class="{highlight:this.sortValue=='low'}">最低气温(度)</th>
-                        <th @click="sort('avg')" :class="{highlight:this.sortValue=='avg'}">平均气温(度)</th>
+                        <th @click="sort('high')" :class="{highlight:sortValue=='high'}">最高气温(度)</th>
+                        <th @click="sort('low')" :class="{highlight:sortValue=='low'}">最低气温(度)</th>
+                        <th @click="sort('avg')" :class="{highlight:sortValue=='avg'}">平均气温(度)</th>
                     </tr>
                 </thead>`,
+                props: ['sortValue'],
+                methods: {
+                    sort: function() { /*形参sortValue*/
+                        this.$emit('highlight-click', this.sortValue)
+                    }
+                }
             },
             'table-body': {
                 template: `
                 <tbody>
-                    <tr v-for="item in this.temp">
+                    <tr v-for="item in temp">
                         <td>{{item.city}}</td>
-                        <td :class="{highlight:this.sortValue=='high'}">{{item.high}}</td>
-                        <td :class="{highlight:this.sortValue=='low'}">{{item.low}}</td>
-                        <td :class="{highlight:this.sortValue=='avg'}">{{item.avg}}</td>
+                        <td :class="{highlight:sortValue=='high'}">{{item.high}}</td>
+                        <td :class="{highlight:sortValue=='low'}">{{item.low}}</td>
+                        <td :class="{highlight:sortValue=='avg'}">{{item.avg}}</td>
                     </tr>
                 </tbody>`,
-                props: ['']
+                props: ['sortValue', 'temp'],
+
+            }
+        },
+        methods: {
+            sort: function(key) {
+                this.sortValue = key;
+                this.temp.sort((a, b) => {
+                    return a[key] < b[key] ? 1 : -1;
+                });
             }
         },
         data() {
@@ -160,24 +175,21 @@
                     low: 14,
                     avg: 15,
                 }],
-
+                sortValue: ''
             }
         },
+
     })
     var app = new Vue({
         el: '#app',
-        sortValue: '',
-        methods: {
-            sort: function(key) {
-                this.sortValue = key;
-                this.temp.sort((a, b) => {
-                    return a[key] < b[key] ? 1 : -1;
-                });
-            }
-        },
-        computed: {
-
-        }
+        // methods: {
+        //     sort: function(key) {
+        //         this.sortValue = key;
+        //         this.temp.sort((a, b) => {
+        //             return a[key] < b[key] ? 1 : -1;
+        //         });
+        //     }
+        // },
     });
 </script>
 
