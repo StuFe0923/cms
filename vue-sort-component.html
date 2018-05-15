@@ -96,6 +96,7 @@
         <temperature></temperature>
     </div>
 </body>
+<!-- <table-head :sort-value="sortValue" ></table-head> -->
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
     Vue.component('temperature', {
@@ -120,8 +121,9 @@
                 </thead>`,
                 props: ['sortValue'],
                 methods: {
-                    sort: function() { /*形参sortValue*/
-                        this.$emit('highlight-click', this.sortValue)
+                    sort: function(data) {
+                        this.$emit('highlight-click', data) //通知给父组件要按照什么要求来更新数据
+                        console.log(data)
                     }
                 }
             },
@@ -182,14 +184,6 @@
     })
     var app = new Vue({
         el: '#app',
-        // methods: {
-        //     sort: function(key) {
-        //         this.sortValue = key;
-        //         this.temp.sort((a, b) => {
-        //             return a[key] < b[key] ? 1 : -1;
-        //         });
-        //     }
-        // },
     });
 </script>
 

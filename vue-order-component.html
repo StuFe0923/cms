@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>vue例子</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="./css/common.css"> -->
+    <style>
+        #app {
+            padding: 50px;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        td,
+        th {
+            padding: 5px 10px 5px 0;
+            text-align: left;
+        }
+        
+        .err {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <all-fruit>
+        </all-fruit>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
+    Vue.component('all-fruit', {
+        template: `
+        <div>
+            <h4>水果价格表：</h4>
+            <checkbox-ul :fruits="fruits"></checkbox-ul>
+            <hr>
+            <table v-show="!isEmpty">
+                <table-head></table-head>
+                <table-body :fruits="fruits"></table-body>
+            </table>
+            <hr>
+        </div>
+        `,
+        components: {
+            'checkbox-ul': {
+                template: `
+                <ul>
+                    <li v-for="f in fruits">
+                        <label><input type="checkbox" v-model="f.buy" />{{f.name}}：{{f.price}}元/斤</label>
+                    </li>
+                </ul>
+                `,
+                props: ['fruits'],
+            },
+            'table-head': {
+                template: `
+                <thead>
+                    <tr>
+                        <th>水果名称</th>
+                        <th>购买数量(斤)</th>
+                        <th>金额(元)</th>
+                    </tr>
+                </thead>
+                `,
+            },
+            'table-body': {
+                template: `
+                <tbody>
+                    <tr v-for="f in fruits" v-if="f.buy">
+                        <td>{{f.name}}</td>
+                        <td>
+                            <input type="number" v-model="f.amount" />
+                        </td>
+                        <td>{{f.amount*f.price}}</td>
+                    </tr>
+                </tbody>
+                `,
+                props: ['fruits']
+            }
+        },
+        computed: {
+            //过滤出要购买的水果（buy是true且amount大于0表示要购买）
+            orderItems: function() {
+                return this.fruits.filter(fruit => fruit.buy && fruit.amount > 0);
+            },
+            //判断有没有要购买的水果
+            isEmpty: function() {
+                return this.orderItems.length === 0;
+            },
+            //计算总金额
+            total: function() {
+                var sum = 0;
+                this.orderItems.forEach(fruit => {
+                    sum += fruit.price * fruit.amount;
+                });
+                return sum;
+            }
+        },
+        data() {
+            return {
+                fruits: [{
+                    id: 'apple',
+                    name: '苹果',
+                    price: 10,
+                    buy: false,
+                    amount: 1
+                }, {
+                    id: 'banana',
+                    name: '香蕉',
+                    price: 5,
+                    buy: false,
+                    amount: 1
+                }, {
+                    id: 'orange',
+                    name: '橘子',
+                    price: 4,
+                    buy: false,
+                    amount: 1
+                }, ]
+            }
+        }
+    })
+    var app = new Vue({
+        el: '#app',
+
+    });
+</script>
+
+</html>
