@@ -42,11 +42,14 @@
             <h4>水果价格表：</h4>
             <checkbox-ul :fruits="fruits"></checkbox-ul>
             <hr>
+            <h4>购买订单：</h4>
+            <p class="err" v-show="isEmpty">你还没有选择要购买的水果！</p>
             <table v-show="!isEmpty">
                 <table-head></table-head>
                 <table-body :fruits="fruits"></table-body>
             </table>
             <hr>
+            <h3>总价：{{total}}元</h3>
         </div>
         `,
         components: {
