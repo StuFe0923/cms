@@ -15,21 +15,20 @@
         .fa-weibo:before {
             content: "\F18A";
         }
-
-        :after,
-        :before {
+        
+         :after,
+         :before {
             box-sizing: border-box;
         }
-
+        
         .fa-video-camera:before {
             content: "\F03D";
         }
-
         /* .list-body .listli{
             list-style: none;
             border-bottom:1px solid #777; 
         } */
-
+        
         .list-body .listli {
             list-style: none;
             height: 80px;
@@ -37,7 +36,6 @@
             border-bottom: 1px solid #ccc;
             margin: 20px 0;
         }
-
         /* .list-body .listli::after {
             content: 'gg';
             position: absolute;
@@ -48,54 +46,54 @@
             height: 5px;
             border: 1px solid #fff;
         } */
-
+        
         .list-body .listul {
             padding: 0px;
         }
-
+        
         .little-list {
             font-size: 14px;
             margin: 10px 0;
         }
-
+        
         .little-list span {
             padding-right: 15px;
         }
-
+        
         .social-media .list-group-item,
         .qq-group .list-group-item {
             padding: 0;
         }
-
+        
         .social-media .list-group-item a,
         .qq-group .list-group-item a {
             color: #555;
             display: block;
             padding: 10px 15px;
         }
-
+        
         .qq-group .list-group-item:hover a {
             background: #f5f5f5;
         }
-
+        
         .social-media .list-group-item:hover a {
             background: #f5f5f5;
         }
-
+        
         .new-time:hover a {
             text-decoration: none;
         }
-
+        
         .new-time {
             padding-left: 15px;
             padding-top: 1em;
         }
-
+        
         .new-time li {
             list-style: none;
             height: 2em;
         }
-
+        
         .btn-default {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
@@ -269,7 +267,7 @@
     <script>
         var urlPrefix = 'http://47.91.228.8/api';
 
-        var openArtile = function (id) {
+        var openArtile = function(id) {
             console.log(id);
             var link = `http://47.91.228.8/api/articles/content?pageID=${id}`;
             // 1. 在当前页面打开
@@ -283,44 +281,44 @@
         var pages;
 
         //获取数据并展示
-        var getData = function (pageNow, keyWord) {
-            // 获取pageNow页的数据
-            $.get(`${urlPrefix}/articles/list?pageCount=2&pageNow=${pageNow}&title=${keyWord}`, function (res, statusText, xhr) {
-                // console.log(res)
-                // console.log(statusText)
-                // console.log(xhr)
-                var data = res.data;
-                /*
-                <li class="listli">
-                    <a href="###">如果你是新手，请务必先看完本项目的视频教程</a>
-                    <div class="little-list">
-                        <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
-                        <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
-                        <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
-                        <span>大漠穷秋</span>
-                        <span>2017-05-17 10:44</span>
-                    </div>
-                </li>
-                ES5 => ECMAScript 5
-                ES6 => ECMAScript 6/ECMAScript 2015
-                模板字符串
-                */
-                //渲染数据
-                var list = '';
-                for (var i = 0; i < data.length; i++) {
-                    var d = data[i];
-                    // var li = '<li class="listli">';
-                    // li += '<a href="###">' + d.title + '</a>';
-                    // li += '<div class="little-list">';
-                    // li += '<span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">' + d.good + '</span>';
-                    // li += '<span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">' + d.comment + '</span>';
-                    // li += '<span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">' + d.view + '</span>';
-                    // li += '<span>' + d.author + '</span>';
-                    // li += '<span>' + d.time + '</span>';
-                    // li += '</div>';
-                    // li += '</li>';
+        var getData = function(pageNow, keyWord) {
+                // 获取pageNow页的数据
+                $.get(`${urlPrefix}/articles/list?pageCount=2&pageNow=${pageNow}&title=${keyWord}`, function(res, statusText, xhr) {
+                    // console.log(res)
+                    // console.log(statusText)
+                    // console.log(xhr)
+                    var data = res.data;
+                    /*
+                    <li class="listli">
+                        <a href="###">如果你是新手，请务必先看完本项目的视频教程</a>
+                        <div class="little-list">
+                            <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">5555</span>
+                            <span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">10000</span>
+                            <span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">10000</span>
+                            <span>大漠穷秋</span>
+                            <span>2017-05-17 10:44</span>
+                        </div>
+                    </li>
+                    ES5 => ECMAScript 5
+                    ES6 => ECMAScript 6/ECMAScript 2015
+                    模板字符串
+                    */
+                    //渲染数据
+                    var list = '';
+                    for (var i = 0; i < data.length; i++) {
+                        var d = data[i];
+                        // var li = '<li class="listli">';
+                        // li += '<a href="###">' + d.title + '</a>';
+                        // li += '<div class="little-list">';
+                        // li += '<span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">' + d.good + '</span>';
+                        // li += '<span class="glyphicon glyphicon glyphicon-comment" aria-hidden="true">' + d.comment + '</span>';
+                        // li += '<span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true">' + d.view + '</span>';
+                        // li += '<span>' + d.author + '</span>';
+                        // li += '<span>' + d.time + '</span>';
+                        // li += '</div>';
+                        // li += '</li>';
 
-                    var li = `<li class="listli" articleID="${d._id}">
+                        var li = `<li class="listli" articleID="${d._id}">
                             <a class="articleTitle"  onclick="openArtile('${d._id}')" target="_blank">${d.title}</a>
                             <div class="little-list">
                                 <span class="glyphicon glyphicon glyphicon-thumbs-up" aria-hidden="true">${d.up}</span>
@@ -332,64 +330,64 @@
                         </li>`;
 
 
-                    list += li;
-                }
+                        list += li;
+                    }
 
-                $('#list-content').html(list);
-                //
-                $('.publishTime').click(function () {
-                    var id = $(this).parents('.listli').attr('articleID')
-                    console.log(this)
-                    var self=this;
-                    $.post(`${urlPrefix}/articles/del`, {
-                        'id': id
-                    }, function () {
-                        // $(self).parents('.listli').remove();
-                        getData(pageNow,keyWord)
+                    $('#list-content').html(list);
+                    //
+                    $('.publishTime').click(function() {
+                        var id = $(this).parents('.listli').attr('articleID')
+                        console.log(this)
+                        var self = this;
+                        $.post(`${urlPrefix}/articles/del`, {
+                                'id': id
+                            }, function() {
+                                // $(self).parents('.listli').remove();
+                                getData(pageNow, keyWord)
+                            })
+                            // getData(0, keyWord)
                     })
-                    // getData(0, keyWord)
-                })
-                $('.glyphicon-thumbs-up').click(function(){
-                    var id = $(this).parents('.listli').attr('articleID')
-                    console.log(this)
-                    var self=this;
-                    $.post(`${urlPrefix}/articles/up`,{
-                        'id':id
-                    },function(res, statusText, xhr){
-                        console.log(res)
-                        $(self).text(res.data.up)
+                    $('.glyphicon-thumbs-up').click(function() {
+                        var id = $(this).parents('.listli').attr('articleID')
+                        console.log(this)
+                        var self = this;
+                        $.post(`${urlPrefix}/articles/up`, {
+                            'id': id
+                        }, function(res, statusText, xhr) {
+                            console.log(res)
+                            $(self).text(res.data.up)
+                        })
                     })
-                })
 
 
-                // 展示分页
-                pages = res.pages;
-                console.log(res.pages)
-                var pagination = `<li>
+                    // 展示分页
+                    pages = res.pages;
+                    console.log(res.pages)
+                    var pagination = `<li>
                                 <a data-pageno="prev" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>`;
-                for (var index = 0; index < pages.pageNumber; index++) {
-                    var num = index + 1;
-                    pagination += `<li><a data-pageno="${index}">${num}</a></li>`;
-                }
-                pagination += `<li>
+                    for (var index = 0; index < pages.pageNumber; index++) {
+                        var num = index + 1;
+                        pagination += `<li><a data-pageno="${index}">${num}</a></li>`;
+                    }
+                    pagination += `<li>
                                 <a data-pageno="next" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>`;
-                $('#pagination').html(pagination);
-                //保存当前页的值
-                current = pages.pageNow;
-            });
-        }
-        //事件绑定，不生效的原因是，在绑定事件的时候，li元素还不存在
-        // $('#pagination li').on('click', function (e) {
-        //     console.log(e)
-        // });
-        // 事件委托   事件冒泡
-        $('#pagination').on('click', 'a', function (e) {//筛选由a这个子元素来触发
+                    $('#pagination').html(pagination);
+                    //保存当前页的值
+                    current = pages.pageNow;
+                });
+            }
+            //事件绑定，不生效的原因是，在绑定事件的时候，li元素还不存在
+            // $('#pagination li').on('click', function (e) {
+            //     console.log(e)
+            // });
+            // 事件委托   事件冒泡
+        $('#pagination').on('click', 'a', function(e) { //筛选由a这个子元素来触发
             console.log(this)
             var pageNow = $(this).attr('data-pageno')
             var keyWord = $('#keyWords').val();
@@ -416,12 +414,11 @@
         var keyWord = $('#keyWords').val();
         getData(current, keyWord);
 
-        $('#searchBtn').click(function () {
+        $('#searchBtn').click(function() {
             var keyWord = $('#keyWords').val();
             getData(0, keyWord)
 
         })
-
     </script>
 
 </body>
